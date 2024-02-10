@@ -12,7 +12,7 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 sh 'python -m venv venv'
-                sh 'source venv/bin/activate'
+                sh 'source venv/bin/activate && python -m unittest
             }
         }
         stage('Run Tests') {
