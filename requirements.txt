@@ -15,14 +15,6 @@ pipeline {
                 sh 'source venv/bin/activate'
             }
         }
-        
-        // Dieser Schritt wird entfernt, wenn du keine requirements.txt hast
-        // stage('Install Dependencies') {
-        //     steps {
-        //         sh 'pip install -r requirements.txt'
-        //     }
-        // }
-        
         stage('Run Tests') {
             steps {
                 sh 'python -m unittest'
