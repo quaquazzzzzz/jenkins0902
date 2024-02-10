@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/deinBenutzername/deinRepo.git'
+            }
+        }
+        
+        stage('Setup Python Environment') {
+            steps {
+                sh 'python -m venv venv'
+                sh 'source venv/bin/activate'
+            }
+        }
+        
+        // Dieser Schritt wird entfernt, wenn du keine requirements.txt hast
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh 'pip install -r requirements.txt'
+        //     }
+        // }
+        
+        stage('Run Tests') {
+            steps {
+                sh 'python -m unittest'
+            }
+        }
+        
+        // Füge hier zusätzliche Stages für die Bereitstellung hinzu, falls nötig
+    }
+}
